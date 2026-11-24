@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: #131F24;
+  color: #FFFFFF;
+}
+
+canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Duolingo 3D Tactile Button Physics */
+.duo-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.08s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.08s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.12s ease;
+  transform: translateY(0px);
+}
+
+.duo-btn:hover:not(:disabled) {
+  filter: brightness(1.07);
+}
+
+.duo-btn:active:not(:disabled),
+.duo-btn.is-pressed {
+  transform: translateY(5px);
+}
+
+.duo-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.duo-btn-green {
+  background-color: #58CC02;
+  color: #FFFFFF;
+  box-shadow: 0 5px 0 #46A302;
+}
+.duo-btn-green:active:not(:disabled) {
+  box-shadow: 0 0px 0 #46A302;
+}
+
+.duo-btn-blue {
+  background-color: #1CB0F6;
+  color: #FFFFFF;
+  box-shadow: 0 5px 0 #1899D6;
+}
+.duo-btn-blue:active:not(:disabled) {
+  box-shadow: 0 0px 0 #1899D6;
+}
+
+.duo-btn-red {
+  background-color: #FF4B4B;
+  color: #FFFFFF;
+  box-shadow: 0 5px 0 #D33131;
+}
+.duo-btn-red:active:not(:disabled) {
+  box-shadow: 0 0px 0 #D33131;
+}
+
+.duo-btn-gold {
+  background-color: #FFC800;
+  color: #2B2B2B;
+  box-shadow: 0 5px 0 #E5A400;
+}
+.duo-btn-gold:active:not(:disabled) {
+  box-shadow: 0 0px 0 #E5A400;
+}
+
+.duo-btn-purple {
+  background-color: #CE82FF;
+  color: #FFFFFF;
+  box-shadow: 0 5px 0 #A558D6;
+}
+.duo-btn-purple:active:not(:disabled) {
+  box-shadow: 0 0px 0 #A558D6;
+}
+
+.duo-card {
+  background-color: #202F36;
+  border: 2px solid #37464F;
+  border-radius: 20px;
+  box-shadow: 0 6px 0 #182429;
+  transition: all 0.12s ease;
+}
+
+.duo-card-selectable {
+  cursor: pointer;
+}
+
+.duo-card-selectable:hover {
+  border-color: #52656D;
+  background-color: #263740;
+}
+
+.duo-card-selectable:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 #182429;
+}
+
+.duo-card-selected {
+  background-color: rgba(28, 176, 246, 0.18);
+  border-color: #1CB0F6;
+  box-shadow: 0 6px 0 #1899D6;
+}
+
+/* Translucent Touch Controls with Duolingo 3D Lip */
+.duo-touch-btn {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  touch-action: none;
+  transition: transform 0.06s ease, box-shadow 0.06s ease, background 0.12s ease;
+}
+
+.duo-touch-fire {
+  background: rgba(255, 75, 75, 0.54);
+  border: 2px solid rgba(255, 150, 150, 0.75);
+  box-shadow: 0 6px 0 rgba(180, 30, 30, 0.65);
+}
+.duo-touch-fire:active {
+  transform: translateY(5px);
+  box-shadow: 0 1px 0 rgba(180, 30, 30, 0.65);
+  background: rgba(255, 75, 75, 0.85);
+}
+
+.duo-touch-scope {
+  background: rgba(28, 176, 246, 0.52);
+  border: 2px solid rgba(130, 220, 255, 0.75);
+  box-shadow: 0 5px 0 rgba(18, 120, 175, 0.65);
+}
+.duo-touch-scope:active, .duo-touch-scope.active-toggle {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(18, 120, 175, 0.65);
+  background: rgba(28, 176, 246, 0.85);
+  border-color: #FFFFFF;
+}
+
+.duo-touch-cover {
+  background: rgba(255, 200, 0, 0.52);
+  border: 2px solid rgba(255, 232, 120, 0.75);
+  box-shadow: 0 5px 0 rgba(185, 130, 0, 0.65);
+}
+.duo-touch-cover:active, .duo-touch-cover.active-toggle {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(185, 130, 0, 0.65);
+  background: rgba(255, 200, 0, 0.85);
+  border-color: #FFFFFF;
+}
+
+.duo-touch-jump {
+  background: rgba(88, 204, 2, 0.52);
+  border: 2px solid rgba(155, 240, 80, 0.75);
+  box-shadow: 0 5px 0 rgba(55, 135, 0, 0.65);
+}
+.duo-touch-jump:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(55, 135, 0, 0.65);
+  background: rgba(88, 204, 2, 0.85);
+}
+
+.duo-touch-reload {
+  background: rgba(206, 130, 255, 0.50);
+  border: 2px solid rgba(230, 185, 255, 0.75);
+  box-shadow: 0 5px 0 rgba(130, 60, 180, 0.65);
+}
+.duo-touch-reload:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 rgba(130, 60, 180, 0.65);
+  background: rgba(206, 130, 255, 0.85);
+}
+
+.duo-joystick-base {
+  background: rgba(32, 47, 54, 0.44);
+  border: 3px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 6px 0 rgba(19, 31, 36, 0.55);
+  backdrop-filter: blur(5px);
+  border-radius: 50%;
+  touch-action: none;
+}
+
+.duo-joystick-knob {
+  background: rgba(88, 204, 2, 0.8);
+  border: 2.5px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 0 rgba(58, 140, 0, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.scope-vignette {
+  background: radial-gradient(
+    circle at center,
+    transparent 26%,
+    rgba(10, 18, 24, 0.45) 31%,
+    rgba(6, 12, 16, 0.96) 35%
+  );
+}

@@ -1,0 +1,14 @@
+# Dependencies and build output
+node_modules/
+dist/
+dist-ssr/
+
+# Local environment configuration
+.env
+.env.*
+!.env.example
+
+# Logs and local tooling
+*.log
+.vite/
+.DS_Store
